@@ -25,6 +25,14 @@ export default{
       }
   },
   methods:{
+    async getActualizar(){
+      let id = this.$route.params.id
+      await axios.get("http://127.0.0.1:8000/api/regional/"+id+"/").then(response=>{
+        this.regional.id=response.data.id
+        this.regional.nombre=response.data.nombre
+
+    });
+  },
     async actualizar(id){
         await axios.put("http://127.0.0.1:8000/api/categoria/"+id+"/",this.categoria).then(response => {
             console.log(response)
@@ -38,13 +46,8 @@ export default{
 
   },
   async mounted(){  
-    let id = this.$route.params.id
-    await axios.get("http://127.0.0.1:8000/api/categoria/"+id+"/").then(response=>{
-      this.categoria.id=response.data.id
-      this.categoria.nombre=response.data.nombre
-      console.log(id)
-    });
-
-    },
+    await this.getActualizar()
+  }
+    
 }
 </script>

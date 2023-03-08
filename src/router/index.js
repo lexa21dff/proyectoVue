@@ -28,6 +28,7 @@ import ActualizarTipoRevision from '@/components/actualizarTipoRevision.vue'
 
 import ProgramaViews from '../views/programaViews.vue'
 import CrearPrograma from '@/components/crearPrograma.vue'
+import ActualizarPrograma from '@/components/actualizarPrograma.vue'
 
 Vue.use(VueRouter)
 
@@ -146,11 +147,11 @@ const routes = [
     name: 'crearPrograma',
     component: CrearPrograma
   },
-  // {
-  //   path: '/actualizarPrograma/:id',
-  //   name: 'actualizarPrograma',
-  //   component: ActualizarPrograma
-  // } 
+  {
+    path: '/actualizarPrograma/:id',
+    name: 'actualizarPrograma',
+    component: ActualizarPrograma
+  } ,
   {
     path: '/actualizarCentroFormacion/:id',
     name: 'actualizarCentroFormacion',

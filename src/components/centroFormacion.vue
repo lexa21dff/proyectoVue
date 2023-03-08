@@ -7,14 +7,12 @@
         <h2>lista </h2>
         <tr>
           <th>nombre </th>
-          <th>regional</th>
           <th>acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="centroFormacion in centroFormacion" :key="centroFormacion.id" >
-          <td>{{ centroFormacion.nombre}}</td>
-          <td>{{ centroFormacion.regional}}</td>
+          <td>{{ centroFormacion.nombre}}</td>    
           <td> <button @click="actualizar(centroFormacion.id)">actualizar</button></td>
           <td> <button @click="eliminar(centroFormacion.id)">eliminar</button></td>
         </tr>
@@ -31,13 +29,17 @@ export default{
   data(){
       return{
         errors:[],
-        centroFormacion:null
+
+        centroFormacion:null,
+        regionales:null
       }
   },
   methods:{
     async getCentroFormacion(){
       await axios.get("http://127.0.0.1:8000/api/centro/").then(response=>{
       this.centroFormacion= response.data
+      console.log(this.centroFormacion)
+      
       })
     },
     crearCentroFormacion(){
@@ -49,10 +51,17 @@ export default{
     async eliminar (id){
       await axios.delete("http://127.0.0.1:8000/api/centro/"+id+"/")
       await this.getCentroFormacion()
-    }  
+    },
+    async getRegional(){
+        await axios.get("http://127.0.0.1:8000/api/regional/").then(response=>{
+          this.regionales=response.data
+
+        })}
   },   
   async mounted() {  
     await this.getCentroFormacion()
+    await this.getRegional()
+
     }, 
 }
 </script>

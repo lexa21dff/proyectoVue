@@ -1,20 +1,22 @@
 
 <template>
 <div>
-    <div>
-    <h2>Crear Programa</h2>
     
-    <d1  class="row">
-        <h3 class="col-sm-5"> Nombre Programa <input type="text" v-model="programas.nombre" class="blockquote-footer" /> </h3>
-        <h3 class="col-sm-7"> Centro de Formacion <input type="text" v-model="programas.centros_de_formacion" class="blockquote-footer" /> </h3>
+    <div class="row">
+        <h4>Nombre del programa</h4>
+        <input type="text" v-model="programas.nombre" class="blockquote-footer">
+        <h4>Centro Formacion</h4>
+        <div>
+            <select :class="form-select" v-model="programas.centros_de_formacion" class="blockquote-footer">
+                <option v-for="centro in centroFormacion" :key="centro.id" :value="centro.url ">{{ centro.nombre }}</option>
+            </select>
+        </div>
         <dd class="col-sm-5">
             <dl class="row">
                 <dt class="col-sm-3"> <button class="btn btn-success" @click="crear()" type="submit"> Agregar </button> </dt>
                 <dd class="col-sm-5"> <button class="btn btn-danger" @click="cancelar()" type="submit"> Cancelar </button> </dd>
             </dl>
         </dd>
-    </d1>
-    
     </div>
 </div>
 </template>
@@ -29,7 +31,8 @@ data(){
         programas:{
             nombre:null,
             centros_de_formacion:null
-        }  
+        },
+        centroFormacion:null
     }
 },
 methods:{
@@ -42,11 +45,20 @@ methods:{
     
      }
     },
+    async getCentroFormacion(){
+            await axios.get('http://127.0.0.1:8000/api/centro/').then(response=>{
+                this.centroFormacion = response.data
+            })
+    },
     async  cancelar() {
     this.$router.push("/programa")     
     }   
 
 },
+async mounted (){
+    await this.getCentroFormacion()
+
+}
 
 }
 </script>

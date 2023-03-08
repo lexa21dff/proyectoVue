@@ -6,16 +6,16 @@
           <thead>
               <tr>
                   <th>Programas</th>
-                  <!-- <th>Actualizar</th> -->
+                  <th>Actualizar</th>
                   <th>Eliminar</th>
                 
               </tr>
           </thead>
           <tbody>
-              <tr v-for="programas in programas" :key="programas.id">
-                  <td>{{programas.nombre}}</td>
-                  <!-- <td> <button @click="actualizar(rol.id)" class="btn btn-success" >*</button></td> -->
-                  <td> <button @click="eliminar(programas.id)" class="btn btn-outline-danger" >...</button></td>
+              <tr v-for="programa in programas" :key="programa.id">
+                  <td>{{programa.nombre}}</td>
+                  <td> <button @click="actualizar(programa.id)" class="btn btn-success" >*</button></td>
+                  <td> <button @click="eliminar(programa.id)" class="btn btn-outline-danger" >...</button></td>
                   
               </tr>
           </tbody>

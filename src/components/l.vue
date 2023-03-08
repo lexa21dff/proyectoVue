@@ -1,15 +1,14 @@
 <template>
     <div>
-        {{ regionales }}
         <div class="row">
             <h4>Nombre del Centro de Formacion</h4>
             <input type="text" v-model="CentroFormacion.nombre" class="blockquote-footer">
             <h4>Regional</h4>
-            <select :class="form-select" v-model="CentroFormacion.regional" class="blockquote-footer">
-                <option v-for="regional in regionales" :key="regional.id" :value="regional.id">{{ regional.nombre }}</option>
-            </select>
-
-
+            <div>
+                <select :class="form-select" v-model="CentroFormacion.regional" class="blockquote-footer">
+                    <option v-for="regional in regionales" :key="regional.id" :value="regional.url ">{{ regional.nombre }}</option>
+                </select>
+            </div>
             <dd class="col-sm-5">
                 <dl class="row">
                     <dt class="col-sm-3"> <button class="btn btn-success" @click="crear()" type="submit"> Agregar </button> </dt>
@@ -61,7 +60,7 @@
         } 
   
     },
-    async mounted(){
+    async mounted(){ 
         await this.getRegional()
 
     }

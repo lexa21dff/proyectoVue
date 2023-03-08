@@ -4,10 +4,13 @@
         <div class="row">
             <h4>Nombre del Centro de Formacion</h4>
             <h4>Regional</h4>
-            <input type="text" v-model="centro.nombre" class="blockquote-footer">
-            <select :class="form-select" v-model="centro.regional" class="blockquote-footer">
-                <option v-for="regional in regional" :key="regional.id" :value="regional.id"></option>
-            </select>
+            <div>
+                <input type="text" v-model="CentroFormacion.nombre" class="blockquote-footer">
+                <select :class="form-select" v-model="CentroFormacion.regional" class="blockquote-footer">
+                    <option v-for="regional in regional" :key="regional.id" :value="regional."></option>
+                </select>
+
+            </div>
             
             <dd class="col-sm-5">
                 <dl class="row">
@@ -40,8 +43,10 @@
     methods:{
       async  crear() {
        try {
+        console.log(CentroFormacion)
         await axios.post('http://127.0.0.1:8000/api/centro/',this.CentroFormacion)
         this.$router.push("/CentroFormacion")
+        
        } catch (e) {
         this.errors.push(e)
         
