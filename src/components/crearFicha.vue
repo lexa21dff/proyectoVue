@@ -1,40 +1,57 @@
   <template>
     <div>
+      <h2>Crear Ficha</h2>
       <div>
-        <h2>Agregar Ficha</h2>
-        <d1  class="row">
-            <h3 class="col-sm-5"> codigo <input type="number" v-model="ficha.codigo" class="blockquote-footer" /> </h3>
-            <h3 class="col-sm-5"> <input type="date" v-model="ficha.fecha_inicio" class="blockquote-footer" /> </h3>
-            <h3 class="col-sm-5"> <input type="date" v-model="ficha.fecha_finalizacion" class="blockquote-footer" /> </h3>
-            <dd class="col-sm-5">
+        <h4>ficha</h4>
+        <input type="text" v-model="ficha.codigo" class="blockquote-footer">
+        <h4>fecha de inicio</h4>
+        <input type="date" v-model="ficha.fecha_inicio" class="blockquote-foote">
+        <h4>fecha de finalizacion</h4>
+        <input type="date" v-model="ficha.fecha_finalizacion" class="blockquote-foote">
+        <h4>Programa</h4>
+        <div>
+          <select :class="form-select" v-model="ficha.programa" class="blockquote-footer">
+            <option v-for="programa in programas" :key="programa.id" :value="programa.url">{{ programa.nombre }}</option>
+          </select>
+        </div>
+        {{ ficha }}
+        <dd class="col-sm-5">
                 <dl class="row">
                     <dt class="col-sm-3"> <button class="btn btn-success" @click="crear()" type="submit"> Agregar </button> </dt>
                     <dd class="col-sm-5"> <button class="btn btn-danger" @click="cancelar()" type="submit"> Cancelar </button> </dd>
                 </dl>
             </dd>
-        </d1>
-        
+
       </div>
-    </div>
+
+  
+    </div>      
+
   </template>
   
 
-  <script>
   
-  import axios from 'axios' 
-  export default{
-    name: 'crear',
-    data(){
-      return{
-        errors: [],
-        ficha:{
-            codigo: null,
-            fecha_inicio: null,
-            fecha_finalizacion: null
-        }  
+<script>
+import axios from 'axios' 
+export default{
+  name: 'crear',
+  data(){
+    return{
+      errors: [],
+      ficha:{
+        id:null,
+        codigo: null,
+        programa: null,
+        fecha_inicio: null,
+        fecha_finalizacion: null,
+        },
+        programas:{
+          id:null,
+          nombre:null,
+        }
       }
-    },
-    methods:{
+  },
+  methods:{
       async  crear() {
        try {
         await axios.post('http://127.0.0.1:8000/api/ficha/',this.ficha) 
@@ -44,11 +61,21 @@
         
        }
       },
+      async getPrograma(){
+        await axios.get('http://127.0.0.1:8000/api/programa/').then(response=>{
+          this.programas = response.data
+        })
+      },
       async  cancelar() {
         this.$router.push("/ficha")     
-       }   
+      },
+
   
     },
+    async mounted(){
+      await this.getPrograma()
+
+    }
   
   }
 </script>

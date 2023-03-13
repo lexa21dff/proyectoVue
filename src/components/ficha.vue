@@ -1,29 +1,4 @@
 <template>
-    <!-- <div>
-      <h1>Ficha</h1>
-      <button @click="crearFicha()">agregar</button>
-      <table>
-        <thead>
-          <h2>listass</h2>
-          <tr>
-            <th>Ficha </th>
-            <th>Fecha Inicio</th>
-            <th>Fecha Finalizacion </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="ficha in ficha" :key="ficha.id" >
-            <td>{{ ficha.codigo}}</td>
-            <td>{{ ficha.fecha_inicio}}</td>
-            <td>{{ ficha.fecha_finalizacion}}</td>
-            <td> <button @click="actualizar(ficha.id)">actualizar</button></td>
-            <td> <button @click="eliminar(ficha.id)">eliminar</button></td>
-            <td>holass</td>
-          </tr>
-        </tbody>
-    </table>
-  
-    </div> -->
     <div class="container">
       <h3 class="p-3 text-center">Lista</h3>
       <table class="table table-striped table-bordered">
@@ -40,6 +15,9 @@
           <tbody>
               <tr v-for="ficha in fichas" :key="ficha.id">
                   <td>{{ficha.codigo}}</td>
+                  <td>{{ ficha.fecha_inicio}}</td>
+                  <td>{{ ficha.fecha_finalizacion}}</td>
+                  
                   <td> <button @click="actualizar(ficha.id)" class="btn btn-success" >*</button></td>
                   <td> <button @click="eliminar(ficha.id)" class="btn btn-outline-danger" >...</button></td>
                   
