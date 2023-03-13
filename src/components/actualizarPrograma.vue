@@ -6,10 +6,11 @@
             <input type="text" v-model="programa.nombre" class="blockquote-footer">
             <h4>CentroFormacion</h4>
             <div>
-            <select :class="form-select" v-model="programa.centroFormacion" class="blockquote-footer">
-              <option v-for="CentroFormacion in centroFormacion" :key="CentroFormacion.id" :value="CentroFormacion.url ">{{ CentroFormacion.nombre }}</option>
+            <select :class="form-select" v-model="programa.centros_de_formacion" class="blockquote-footer">
+              <option v-for="CentroFormacion in centro" :key="CentroFormacion.id" :value="CentroFormacion.url ">{{ CentroFormacion.nombre }}</option>
             </select>
             </div>
+            {{ programa }}
             <dd class="col-sm-5">
               <dl class="row">
                   <dt class="col-sm-3"> <button class="btn btn-success" @click="actualizar(programa.id)" type="submit"> Guardar </button> </dt>
@@ -32,9 +33,10 @@
           programa:{
             id:  null,
             nombre:null,
-            centroFormacion: null
+            centros_de_formacion: null
           },
-          centroFormacion : {
+          centro : {
+            url:null,
             id: null,
             nombre: null
           }
@@ -56,7 +58,7 @@
         await axios.get("http://127.0.0.1:8000/api/programa/"+id+"/").then(response=>{
             this.programa.id=response.data.id
             this.programa.nombre=response.data.nombre
-            this.programa.centroFormacion=response.data.centroFormacion
+            this.programa.centros_de_formacion=response.data.centros_de_formacion
             this.getCentroFormacion()
 
         });
@@ -65,7 +67,7 @@
       
       async getCentroFormacion(){
             await axios.get('http://127.0.0.1:8000/api/centro/').then(response=>{
-                this.centroFormacion = response.data
+                this.centro = response.data
             })
         } 
        

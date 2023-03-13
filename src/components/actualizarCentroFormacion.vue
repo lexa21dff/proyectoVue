@@ -10,7 +10,6 @@
             <option v-for="regional in regionales" :key="regional.id" :value="regional.url ">{{ regional.nombre }}</option>
           </select>
           </div>
-          {{ CentroFormacion.regional }}
           <dd class="col-sm-5">
               <dl class="row">
                   <dt class="col-sm-3"> <button class="btn btn-success" @click="actualizar(CentroFormacion.id)" type="submit"> Guardar </button> </dt>

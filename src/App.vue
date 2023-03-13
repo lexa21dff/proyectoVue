@@ -5,8 +5,8 @@
       <router-link to="/regional">Regional</router-link> |
       <router-link to="/categoria">categoria</router-link> |
       <router-link to="/tipoRevision">Tipo Revision</router-link> |
-      <router-link to="/ficha">Ficha</router-link> |
       <router-link to='/centroFormacion'>Centro Formacion</router-link> |
+      <router-link to="/ficha">Ficha</router-link> |
       <router-link to="/programa">Programa</router-link> |
     </nav>
     <router-view/>
